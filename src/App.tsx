@@ -1,24 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+
 import './App.css';
 
 function App() {
+
+  const [notes, setNotes] = useState<string[]>([]);
+  const [currentNote, setCurrentNote] = useState(0);
+  const [isEditing, setIsEditing] = useState(false);
+  const [noteText, setNoteText] = useState('');
+
+  function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    e.preventDefault();
+    setNoteText(e.target.value);
+  }
+
+  function handleEdit(e: React.UIEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    setIsEditing(true);
+  }
+
+  function handleSave(e: React.UIEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    setIsEditing(false);
+    setNotes([...notes, noteText]);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <h1>Notes App</h1>
       </header>
+      <nav>
+        <h2>Notes</h2>
+        <button>New</button>
+        <p>(List will go here)</p>
+      </nav>
+      {isEditing ? (
+        <>
+          <textarea value={noteText} onChange={handleChange} />
+          <button onClick={handleSave}>Save</button>
+        </>
+      ) : (
+        <>
+          <button onClick={handleEdit}>Edit</button>
+          <p>
+            {noteText}
+          </p>
+        </>
+      )}
     </div>
   );
 }
