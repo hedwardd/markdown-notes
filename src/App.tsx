@@ -1,28 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 
 import './App.css';
+import reducer from "./reducer";
+import NoteEditor from "./NoteEditor";
+
+const initialState = {
+  notes: [],
+  currentNoteIndex: null,
+  isEditing: false,
+  editorText: null,
+}
 
 function App() {
+  
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const [editorText, setEditorText] = useState(state.notes[state.currentNoteIndex] || '');
 
-  const [notes, setNotes] = useState<string[]>([]);
-  const [currentNote, setCurrentNote] = useState(0);
-  const [isEditing, setIsEditing] = useState(false);
-  const [noteText, setNoteText] = useState('');
-
-  function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+  function handleEditorChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     e.preventDefault();
-    setNoteText(e.target.value);
-  }
-
-  function handleEdit(e: React.UIEvent<HTMLButtonElement>) {
-    e.preventDefault();
-    setIsEditing(true);
+    setEditorText(e.target.value);
   }
 
   function handleSave(e: React.UIEvent<HTMLButtonElement>) {
     e.preventDefault();
-    setIsEditing(false);
-    setNotes([...notes, noteText]);
+    dispatch({type: 'SAVE_NOTE', payload: editorText});
   }
 
   return (
@@ -31,20 +32,33 @@ function App() {
         <h1>Notes App</h1>
       </header>
       <nav>
-        <h2>Notes</h2>
-        <button>New</button>
-        <p>(List will go here)</p>
+        <h2>All Notes</h2>
+        <button onClick={() => dispatch({ type: 'CREATE_NOTE' })}>New</button>
+        <ul>
+          {state.notes.map((note, i) => (
+            <li
+              onClick={() => dispatch({ type: 'OPEN_NOTE', payload: i })}
+            >
+              {note}
+            </li>
+          ))}
+        </ul>
       </nav>
-      {isEditing ? (
+      <h3>Current</h3>
+      {state.isEditing ? (
         <>
-          <textarea value={noteText} onChange={handleChange} />
+          <NoteEditor editorText={editorText} handleEdit={handleEditorChange} />
           <button onClick={handleSave}>Save</button>
         </>
       ) : (
         <>
-          <button onClick={handleEdit}>Edit</button>
+          <button
+            onClick={() => dispatch({type: 'EDIT_CURRENT_NOTE'})}
+          >
+            Edit
+          </button>
           <p>
-            {noteText}
+            {state.notes[state.currentNoteIndex]}
           </p>
         </>
       )}
