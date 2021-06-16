@@ -2,7 +2,6 @@ interface State {
   notes: string[],
   currentNoteIndex: number,
   isEditing: boolean,
-  editorText: string | null,
 }
 
 const reducer = (state: State, action: any) => {
@@ -24,7 +23,6 @@ const reducer = (state: State, action: any) => {
       return {
         ...state,
         isEditing: true,
-        editorText: state.notes[state.currentNoteIndex],
       };
     case 'SAVE_NOTE':
       return {
@@ -33,12 +31,17 @@ const reducer = (state: State, action: any) => {
         notes: [
           ...state.notes.slice(0, state.currentNoteIndex),
           action.payload,
-          ...state.notes.slice(state.currentNoteIndex,)],
+          ...state.notes.slice(state.currentNoteIndex + 1,)],
       };
     case 'DELETE_NOTE':
-      // TODO
       return {
         ...state,
+        isEditing: false,
+        notes: [
+          ...state.notes.slice(0, state.currentNoteIndex),
+          ...state.notes.slice(state.currentNoteIndex + 1,)
+        ],
+        currentNoteIndex: null,
       }
     default:
       throw new Error();
