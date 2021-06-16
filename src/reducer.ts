@@ -1,3 +1,5 @@
+import DOMPurify from 'dompurify';
+
 interface State {
   notes: string[],
   currentNoteIndex: number,
@@ -25,12 +27,13 @@ const reducer = (state: State, action: any) => {
         isEditing: true,
       };
     case 'SAVE_NOTE':
+      const cleanedMarkdown = DOMPurify.sanitize(action.payload);
       return {
         ...state,
         isEditing: false,
         notes: [
           ...state.notes.slice(0, state.currentNoteIndex),
-          action.payload,
+          cleanedMarkdown,
           ...state.notes.slice(state.currentNoteIndex + 1,)],
       };
     case 'DELETE_NOTE':

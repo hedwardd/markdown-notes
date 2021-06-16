@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer, useState } from 'react';
+import marked from 'marked';
 
 import './App.css';
 import reducer from "./reducer";
@@ -85,9 +86,8 @@ function App() {
               >
                 Delete
               </button>
-              <p>
-                {state.notes[state.currentNoteIndex]}
-              </p>
+              <div dangerouslySetInnerHTML={{ __html: marked(state.notes[state.currentNoteIndex])}}>
+              </div>
             </>
           )}
         </div>
