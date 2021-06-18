@@ -4,3 +4,18 @@
   flex-direction: column;
   align-items: center;
 }
+
+.vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.horizontal {
+  display: flex;
+  flex-direction: row;
+}
+
+.emphasis {
+  font-weight: bold;
+}

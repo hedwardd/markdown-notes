@@ -1,51 +1,93 @@
 import DOMPurify from 'dompurify';
 
-interface State {
-  notes: string[],
-  currentNoteIndex: number,
-  isEditing: boolean,
-}
+import { ActionType, Note, State } from "./types";
 
-const reducer = (state: State, action: any) => {
+// const generateNoteId = (notes: Note[]) => notes[notes.length - 1].id + 1;
+
+const createNewNote = (): Note => ({
+  // id: id,
+  title: 'Untitled Note',
+  body: '',
+  creation_date: new Date(),
+});
+
+// const noteIndexFromId = (id: number, notes: Note[]) => {
+//   for (let i = 0; i < notes.length; i++) {
+//     if (notes[i].id === id)
+//       return i;
+//   }
+//   return null;
+// }
+
+const reducer = (state: State, action: ActionType): State => {
+  const { notes, currentNoteIndex, editorTitleText, editorBodyText } = state;
   switch (action.type) {
-    case 'CREATE_NOTE':
-      return {
-        ...state,
-        notes: [...state.notes, ''],
-        isEditing: true,
-        currentNoteIndex: state.notes.length,
-      };
     case 'OPEN_NOTE':
       return {
         ...state,
         currentNoteIndex: action.payload,
-        isEditing: false,
       };
-    case 'EDIT_CURRENT_NOTE':
+    case 'CLOSE_NOTE':
       return {
         ...state,
+        currentNoteIndex: null,
+      };
+    case 'CREATE_NOTE':
+      const newNote = createNewNote();
+      return {
+        ...state,
+        notes: [...notes, newNote],
         isEditing: true,
-      };
-    case 'SAVE_NOTE':
-      const cleanedMarkdown = DOMPurify.sanitize(action.payload);
-      return {
-        ...state,
-        isEditing: false,
-        notes: [
-          ...state.notes.slice(0, state.currentNoteIndex),
-          cleanedMarkdown,
-          ...state.notes.slice(state.currentNoteIndex + 1,)],
+        currentNoteIndex: notes.length,
+        editorTitleText: newNote.title,
+        editorBodyText: newNote.body,
       };
     case 'DELETE_NOTE':
       return {
         ...state,
         isEditing: false,
         notes: [
-          ...state.notes.slice(0, state.currentNoteIndex),
-          ...state.notes.slice(state.currentNoteIndex + 1,)
+          ...notes.slice(0, currentNoteIndex!),
+          ...notes.slice(currentNoteIndex! + 1,)
         ],
         currentNoteIndex: null,
-      }
+      };
+    case 'START_EDIT':
+      return {
+        ...state,
+        isEditing: true,
+        editorTitleText: notes[currentNoteIndex!].title,
+        editorBodyText: notes[currentNoteIndex!].body,
+      };
+    case 'EDIT_TITLE':
+      return {
+        ...state,
+        editorTitleText: action.payload,
+      };
+    case 'EDIT_BODY':
+      return {
+        ...state,
+        editorBodyText: action.payload,
+      };
+    case 'SAVE_EDIT':
+      const updatedNote: Note = {
+        ...notes[currentNoteIndex!],
+        title: editorTitleText,
+        body: DOMPurify.sanitize(editorBodyText),
+      };
+      return {
+        ...state,
+        isEditing: false,
+        notes: [
+          ...notes.slice(0, currentNoteIndex!),
+          updatedNote,
+          ...notes.slice(currentNoteIndex! + 1,)],
+      };
+      case 'CANCEL_EDIT':
+        return {
+          ...state,
+          isEditing: false,
+        };
     default:
       throw new Error();
   }
