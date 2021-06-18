@@ -5,7 +5,7 @@ export type Note = {
   creation_date: Date;
 };
 
-export type State = {
+export type AppState = {
   notes: Note[],
   currentNoteIndex: number | null,
   isEditing: boolean,
@@ -13,9 +13,9 @@ export type State = {
   editorBodyText: string,
 };
 
-export type ActionType = 
-| { type: 'OPEN_NOTE'; payload: number }
-| { type: 'CLOSE_NOTE' }
+export type Action =
+  | { type: 'OPEN_NOTE'; payload: number }
+  | { type: 'CLOSE_NOTE' }
   | { type: 'CREATE_NOTE' }
   | { type: 'DELETE_NOTE' }
   | { type: 'START_EDIT' }

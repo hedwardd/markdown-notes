@@ -1,6 +1,6 @@
 import DOMPurify from 'dompurify';
 
-import { ActionType, Note, State } from "./types";
+import { Action, Note, AppState } from "./types";
 
 // const generateNoteId = (notes: Note[]) => notes[notes.length - 1].id + 1;
 
@@ -19,7 +19,7 @@ const createNewNote = (): Note => ({
 //   return null;
 // }
 
-const reducer = (state: State, action: ActionType): State => {
+const reducer = (state: AppState, action: Action): AppState => {
   const { notes, currentNoteIndex, editorTitleText, editorBodyText } = state;
   switch (action.type) {
     case 'OPEN_NOTE':

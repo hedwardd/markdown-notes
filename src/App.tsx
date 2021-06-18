@@ -3,12 +3,12 @@ import marked from 'marked';
 
 import './App.css';
 import reducer from "./reducer";
-import { Note, State } from "./types";
+import { AppState, Note } from "./types";
 
 const storedNotesString = localStorage.getItem('notes');
 const parsedStoredNotes: Note[] = storedNotesString ? JSON.parse(storedNotesString) : [];
 
-const initialState: State = {
+const initialState: AppState = {
   notes: parsedStoredNotes,
   currentNoteIndex: null,
   isEditing: false,
