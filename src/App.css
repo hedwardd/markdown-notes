@@ -1,19 +1,77 @@
+:root {
+  --layout-1: 4px;
+  --layout-2: 8px;
+  --layout-3: 12px;
+  --layout-4: 16px;
+  --layout-5: 24px;
+  --layout-6: 32px;
+  --layout-7: 48px;
+  --layout-8: 64px;
+  --layout-9: 96px;
+  --layout-10: 128px;
+  --layout-11: 192px;
+  --layout-12: 256px;
+  --layout-13: 384px;
+  --layout-14: 512px;
+  --layout-15: 640px;
+  --layout-16: 768px;
+}
+
 .App {
+  height: 100%;
+  width: 100%;
+  background-color: gainsboro;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.vertical {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.list-container {
+
+
 }
 
-.horizontal {
+.notes-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+}
+
+.notes-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: unset;
+}
+
+.notes-list-item {
+
+}
+
+
+
+.note-container {
+  margin-top: var(--layout-7);
+  height: var(--layout-13);
+  width: var(--layout-13);
+}
+
+.note-title-wrapper {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  border-radius: var(--layout-1);
+}
+
+.note-body-wrapper {
+  background-color: white;
+  border-radius: var(--layout-1);
+  
+}
+
+.top-btn-wrapper {
+  display: flex;
+  justify-content: space-between;
 }
 
 .emphasis {

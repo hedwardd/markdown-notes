@@ -11,23 +11,24 @@ export default function List({ state, dispatch }: Props): JSX.Element {
   const { currentNoteIndex, notes } = state;
 
   return (
-    <>
+    <div className="list-container">
       <header>
         <h1>Notes App</h1>
       </header>
 
-      <nav>
-        <h2>All Notes</h2>
+      <h2>All Notes</h2>
+
+      <div className="notes-container">
         <button type="button" onClick={() => dispatch({ type: "CREATE_NOTE" })}>
           New
         </button>
         {notes.length ? (
-          <ul>
+          <ul className="notes-list">
             {notes.map((note, i) => (
               <button
                 type="button"
                 onClick={() => dispatch({ type: "OPEN_NOTE", payload: i })}
-                className={i === currentNoteIndex ? "emphasis" : ""}
+                className="notes-list-item"
               >
                 {note.title}
               </button>
@@ -37,7 +38,7 @@ export default function List({ state, dispatch }: Props): JSX.Element {
           // Empty State
           <p>Add your first note!</p>
         )}
-      </nav>
-    </>
+      </div>
+    </div>
   );
 }

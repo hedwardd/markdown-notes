@@ -44,7 +44,7 @@ function App(): JSX.Element {
       {currentNoteIndex === null ? (
         <List state={state} dispatch={dispatch} />
       ) : (
-        <div>
+        <div className="note-container">
           {isEditing ? (
             <Editor
               state={state}

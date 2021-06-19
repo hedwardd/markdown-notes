@@ -18,8 +18,8 @@ export default function Editor({
   const { editorBodyText, editorTitleText } = state;
 
   return (
-    <div className="vertical">
-      <div>
+    <div className="editor">
+      <div className="top-btn-wrapper">
         <button type="button" onClick={() => dispatch({ type: "CANCEL_EDIT" })}>
           Cancel
         </button>
