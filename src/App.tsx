@@ -4,6 +4,9 @@ import marked from "marked";
 import "./App.css";
 import reducer from "./reducer";
 import { AppState, Note } from "./types";
+import List from "./components/List";
+import Editor from "./components/Editor";
+import Viewer from "./components/Viewer";
 
 const storedNotesString = localStorage.getItem("notes");
 const parsedStoredNotes: Note[] = storedNotesString
@@ -21,112 +24,35 @@ const initialState: AppState = {
 function App(): JSX.Element {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const {
-    notes,
-    currentNoteIndex,
-    isEditing,
-    editorTitleText,
-    editorBodyText,
-  } = state;
+  const { notes, currentNoteIndex, isEditing } = state;
 
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);
 
-  function handleTitleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    e.preventDefault();
-    dispatch({ type: "EDIT_TITLE", payload: e.target.value });
-  }
-
-  function handleBodyChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    e.preventDefault();
-    dispatch({ type: "EDIT_BODY", payload: e.target.value });
-  }
+  const editHandler = (type: "title" | "body") => {
+    const actionType = type === "title" ? "EDIT_TITLE" : "EDIT_BODY";
+    return function (
+      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) {
+      dispatch({ type: actionType, payload: e.target.value });
+    };
+  };
 
   return (
     <div className="App">
       {currentNoteIndex === null ? (
-        <>
-          <header>
-            <h1>Notes App</h1>
-          </header>
-
-          <nav>
-            <h2>All Notes</h2>
-            <button
-              type="button"
-              onClick={() => dispatch({ type: "CREATE_NOTE" })}
-            >
-              New
-            </button>
-            {notes.length ? (
-              <ul>
-                {notes.map((note, i) => (
-                  <button
-                    type="button"
-                    onClick={() => dispatch({ type: "OPEN_NOTE", payload: i })}
-                    className={i === currentNoteIndex ? "emphasis" : ""}
-                  >
-                    {note.title}
-                  </button>
-                ))}
-              </ul>
-            ) : (
-              // Empty State
-              <p>Add your first note!</p>
-            )}
-          </nav>
-        </>
+        <List state={state} dispatch={dispatch} />
       ) : (
         <div>
           {isEditing ? (
-            <div className="vertical">
-              <div>
-                <button
-                  type="button"
-                  onClick={() => dispatch({ type: "CANCEL_EDIT" })}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  onClick={() => dispatch({ type: "SAVE_EDIT" })}
-                >
-                  Save
-                </button>
-              </div>
-              <input value={editorTitleText} onChange={handleTitleChange} />
-              <textarea value={editorBodyText} onChange={handleBodyChange} />
-              <button
-                type="button"
-                onClick={() => dispatch({ type: "DELETE_NOTE" })}
-              >
-                Delete
-              </button>
-            </div>
+            <Editor
+              state={state}
+              dispatch={dispatch}
+              editHandler={editHandler}
+            />
           ) : (
-            <div>
-              <div>
-                <button
-                  type="button"
-                  onClick={() => dispatch({ type: "CLOSE_NOTE" })}
-                >
-                  Back
-                </button>
-                <button
-                  type="button"
-                  onClick={() => dispatch({ type: "START_EDIT" })}
-                >
-                  Edit
-                </button>
-              </div>
-              <h3>{notes[currentNoteIndex].title}</h3>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: marked(notes[currentNoteIndex].body),
-                }}
-              />
-            </div>
+            <Viewer state={state} dispatch={dispatch} />
           )}
         </div>
       )}
