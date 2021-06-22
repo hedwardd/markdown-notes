@@ -8,14 +8,10 @@ type Props = {
 };
 
 export default function List({ state, dispatch }: Props): JSX.Element {
-  const { currentNoteIndex, notes } = state;
+  const { notes } = state;
 
   return (
     <div className="list-container">
-      <header>
-        <h1>Notes App</h1>
-      </header>
-
       <h2>All Notes</h2>
 
       <div className="notes-container">

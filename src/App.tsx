@@ -1,12 +1,10 @@
 import React, { useEffect, useReducer } from "react";
-import marked from "marked";
 
 import "./App.css";
 import reducer from "./reducer";
 import { AppState, Note } from "./types";
-import List from "./components/List";
-import Editor from "./components/Editor";
-import Viewer from "./components/Viewer";
+import List from "./views/List";
+import NoteView from "./views/NoteView/NoteView";
 
 const storedNotesString = localStorage.getItem("notes");
 const parsedStoredNotes: Note[] = storedNotesString
@@ -24,37 +22,22 @@ const initialState: AppState = {
 function App(): JSX.Element {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const { notes, currentNoteIndex, isEditing } = state;
+  const { notes, currentNoteIndex } = state;
 
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);
 
-  const editHandler = (type: "title" | "body") => {
-    const actionType = type === "title" ? "EDIT_TITLE" : "EDIT_BODY";
-    return function (
-      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) {
-      dispatch({ type: actionType, payload: e.target.value });
-    };
-  };
-
   return (
     <div className="App">
+      <header>
+        <h1>Notes App</h1>
+      </header>
+
       {currentNoteIndex === null ? (
         <List state={state} dispatch={dispatch} />
       ) : (
-        <div className="note-container">
-          {isEditing ? (
-            <Editor
-              state={state}
-              dispatch={dispatch}
-              editHandler={editHandler}
-            />
-          ) : (
-            <Viewer state={state} dispatch={dispatch} />
-          )}
-        </div>
+        <NoteView state={state} dispatch={dispatch} />
       )}
     </div>
   );

@@ -17,19 +17,27 @@
   --layout-16: 768px;
 }
 
-.App {
+#root {
+  position: fixed;
   height: 100%;
   width: 100%;
-  background-color: gainsboro;
+  background-color: #FFFFFF;
+}
+
+.App {
+  margin: var(--layout-6) auto;
+  padding: var(--layout-6) var(--layout-5);
+  background-color: thistle;
   text-align: center;
+}
+
+/*
+  List View
+ */
+.list-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.list-container {
-
-
 }
 
 .notes-container {
@@ -48,32 +56,48 @@
 
 }
 
-
-
+/*
+  Note View
+ */
 .note-container {
   margin-top: var(--layout-7);
-  height: var(--layout-13);
-  width: var(--layout-13);
+  padding: var(--layout-2);
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-auto-rows: auto;
 }
 
-.note-title-wrapper {
+.note-title {
+  grid-column: 2 / 3;
   display: flex;
   justify-content: center;
   background-color: white;
   border-radius: var(--layout-1);
 }
 
-.note-body-wrapper {
+.note-body {
   background-color: white;
   border-radius: var(--layout-1);
-  
+  grid-column: 1 / 4;
+}
+
+.back-button {
+  grid-column: 1 / 2;
+}
+
+.edit-button {
+  grid-column: 3 / 4;
+}
+
+.save-button {
+  grid-column: 3 / 4;
+}
+
+.delete-button {
+  grid-column: 1 / 2;
 }
 
 .top-btn-wrapper {
   display: flex;
   justify-content: space-between;
-}
-
-.emphasis {
-  font-weight: bold;
 }
