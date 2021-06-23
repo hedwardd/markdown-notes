@@ -18,42 +18,72 @@
 }
 
 #root {
-  position: fixed;
+  /* position: fixed;
   height: 100%;
   width: 100%;
-  background-color: #FFFFFF;
+  background-color: #FFFFFF; */
 }
 
 .App {
-  margin: var(--layout-6) auto;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background-color: #FFFFFF;
+  text-align: center;
+  /* margin: var(--layout-6) auto;
+  height: var(--layout-16);
   padding: var(--layout-6) var(--layout-5);
   background-color: thistle;
-  text-align: center;
+  text-align: center; */
 }
 
 /*
   List View
  */
-.list-container {
+.list-view {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.notes-container {
-  display: flex;
-  flex-direction: column;
+.new-note-btn {
+  margin-top: var(--layout-4);
+  width: var(--layout-9);
 }
 
-.notes-list {
+.list-wrapper {
+  margin-top: var(--layout-4);
+  width: var(--layout-12);
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+}
+
+.note-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
   list-style: none;
   padding: unset;
+  overflow: scroll;
 }
 
-.notes-list-item {
+.note-list-item {
+  height: var(--layout-10);
+  padding: var(--layout-3);
+  border: 1px solid black;
+  box-sizing: border-box;
+  text-align: left;
+  overflow: hidden;
+  cursor: pointer;
+}
 
+.list-note-title {
+
+}
+
+.list-note-body {
 }
 
 /*

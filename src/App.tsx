@@ -3,7 +3,7 @@ import React, { useEffect, useReducer } from "react";
 import "./App.css";
 import reducer from "./reducer";
 import { AppState, Note } from "./types";
-import List from "./views/List";
+import ListView from "./views/ListView";
 import NoteView from "./views/NoteView/NoteView";
 
 const storedNotesString = localStorage.getItem("notes");
@@ -31,11 +31,11 @@ function App(): JSX.Element {
   return (
     <div className="App">
       <header>
-        <h1>Notes App</h1>
+        <h1>Markdown Notes</h1>
       </header>
 
       {currentNoteIndex === null ? (
-        <List state={state} dispatch={dispatch} />
+        <ListView state={state} dispatch={dispatch} />
       ) : (
         <NoteView state={state} dispatch={dispatch} />
       )}
