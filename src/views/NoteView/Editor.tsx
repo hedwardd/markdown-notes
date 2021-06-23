@@ -39,13 +39,17 @@ export default function Editor({
       </div>
 
       <div className="note-body">
-        <textarea value={editorBodyText} onChange={editHandler("body")} />
+        <textarea
+          className="note-body-editor"
+          value={editorBodyText}
+          onChange={editHandler("body")}
+        />
       </div>
 
       <button
         type="button"
-        onClick={() => dispatch({ type: "DELETE_NOTE" })}
         className="delete-button"
+        onClick={() => dispatch({ type: "DELETE_NOTE" })}
       >
         Delete
       </button>
