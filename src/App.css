@@ -15,23 +15,25 @@
   --layout-14: 512px;
   --layout-15: 640px;
   --layout-16: 768px;
+
+  --background-image: linear-gradient(
+    30deg
+    ,#231557,#44107a 29%,#ff1361 67%,#fff800);
 }
 
+* {margin:0;padding:0;}
+
 #root {
-  /* position: fixed;
-  height: 100%;
-  width: 100%;
-  background-color: #FFFFFF; */
+  background-image: linear-gradient(
+    30deg
+    ,#231557,#44107a 29%,#ff1361 67%,#fff800);
 }
 
 .App {
   position: relative;
-  height: 100vh;
-  width: 100%;
-  background-color: #44107a;
-  background-image: linear-gradient(
-    30deg
-    ,#231557,#44107a 29%,#ff1361 67%,#fff800);;
+  /* height: 100vh; */
+  /* width: 100%; */
+  /* background-color: #44107a; */
   text-align: center;
   /* margin: var(--layout-6) auto;
   height: var(--layout-16);
