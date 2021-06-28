@@ -17,7 +17,7 @@ export default function ListView({ state, dispatch }: Props): JSX.Element {
     <div className="list-view">
       <button
         type="button"
-        className="new-note-btn"
+        className="button new-note-btn"
         onClick={() => dispatch({ type: "CREATE_NOTE" })}
       >
         New

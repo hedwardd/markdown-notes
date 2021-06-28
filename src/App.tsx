@@ -4,7 +4,7 @@ import "./App.css";
 import reducer from "./reducer";
 import { AppState, Note } from "./types";
 import ListView from "./views/ListView";
-import NoteView from "./views/NoteView/NoteView";
+import NoteView from "./views/NoteView";
 
 const storedNotesString = localStorage.getItem("notes");
 const parsedStoredNotes: Note[] = storedNotesString
@@ -30,7 +30,7 @@ function App(): JSX.Element {
 
   return (
     <div className="App">
-      <header>
+      <header className="header">
         <h1>Markdown Notes</h1>
       </header>
 
