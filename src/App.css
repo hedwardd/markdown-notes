@@ -31,16 +31,17 @@
   --background-image: linear-gradient(
     30deg
     ,#231557,#44107a 29%,#ff1361 67%,#fff800);
-  --glass-background: rgba(249, 250, 251, 0.55);
+  --glass-background: rgba(249, 250, 251, 0.75);
   --glass-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  --glass-backdrop-filter: blur(30.0px);
-  --glass-border: 1px solid rgba( 255, 255, 255, 0.18 );
+  --glass-backdrop-filter: blur(16.0px);
+  --glass-border: 1px solid rgba(209, 213, 219, 0.3);
 }
 
 * {margin:0;padding:0;}
 
 #root {
   background-image: var(--background-image);
+  background-attachment: fixed;
   min-height: 100vh;
 }
 
@@ -57,7 +58,7 @@
 
 .header h1 {
   padding: var(--layout-3) var(--layout-4);
-  border-radius: var(--layout-2);
+  border-radius: var(--layout-4);
   background: var(--glass-background);
   box-shadow: var(--glass-box-shadow);
   backdrop-filter: var(--glass-backdrop-filter);
@@ -72,7 +73,7 @@
   backdrop-filter: var(--glass-backdrop-filter);
   -webkit-backdrop-filter: var(--glass-backdrop-filter);
   border: var(--glass-border);
-  border-radius: var(--layout-2);
+  border-radius: var(--layout-4);
   font-size: var(--font-size-2);
   cursor: pointer;
   text-transform: uppercase;
@@ -95,10 +96,6 @@
 
 .list-wrapper {
   margin-top: var(--layout-4);
-  width: var(--layout-12);
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
 }
 
 .note-list {
@@ -106,14 +103,16 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  justify-content: center;
   gap: var(--layout-2);
   list-style: none;
 }
 
 .note-list-item {
   height: var(--layout-10);
+  width: var(--layout-12);
   padding: var(--layout-3);
-  border-radius: var(--layout-2);
+  border-radius: var(--layout-4);
   background: var(--glass-background);
   box-shadow: var(--glass-box-shadow);
   backdrop-filter: var(--glass-backdrop-filter);
@@ -137,7 +136,9 @@
   Note View
  */
 .note-container {
-  margin-top: var(--layout-7);
+  margin: auto;
+  max-width: var(--layout-13);
+  margin-top: var(--layout-5);
   padding: var(--layout-2);
   display: flex;
   flex-direction: column;
@@ -152,10 +153,11 @@
 }
 
 .note-title {
+  min-width: var(--layout-11);
   align-self: center;
   display: flex;
   justify-content: center;
-  border-radius: var(--layout-2);
+  border-radius: var(--layout-4);
   background: var(--glass-background);
   box-shadow: var(--glass-box-shadow);
   backdrop-filter: var(--glass-backdrop-filter);
@@ -173,45 +175,49 @@
   font-size: var(--font-size-3);
   background: transparent;
   border: none;
-  /* font-size: var(--font-size-4); */
   text-align: center;
 }
 
 .note-body {
   text-align: left;
-  /* min-height: var(--layout-13); */
-  border-radius: var(--layout-2);
+  border-radius: var(--layout-4);
   background: var(--glass-background);
   box-shadow: var(--glass-box-shadow);
   backdrop-filter: var(--glass-backdrop-filter);
   -webkit-backdrop-filter: var(--glass-backdrop-filter);
   border: var(--glass-border);
-  padding: var(--layout-2) var(--layout-2);
+  padding: var(--layout-3) var(--layout-3);
 }
 
 .note-body-display {
-  /* height: 50vh; */
-  /* width: 100%; */
+
 }
 
 .note-body-editor {
   min-height: var(--layout-10);
-  /* height: 50vh; */
   width: 100%;
   background: transparent;
   border: none;
-  border-radius: var(--layout-1);
   resize: none;
 }
 
-.back-button {
+.white-background {
+  background-color: #FFFFFF;
 }
 
-.edit-button {
+@media (min-width: 768px) {
+  .note-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .note-container{
+    max-width: var(--layout-14);
+  }
 }
 
-.save-button {
-}
-
-.delete-button {
+@media (min-width: 1024px) {
+  .note-list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }

@@ -60,7 +60,7 @@ export default function NoteView({ state, dispatch }: Props): JSX.Element {
         )}
       </div>
 
-      <div className="note-title">
+      <div className={isEditing ? "note-title white-background" : "note-title"}>
         {isEditing ? (
           <input
             className="note-title__input"
@@ -72,7 +72,7 @@ export default function NoteView({ state, dispatch }: Props): JSX.Element {
         )}
       </div>
 
-      <div className="note-body">
+      <div className={isEditing ? "note-body white-background" : "note-body"}>
         {isEditing ? (
           <textarea
             className="note-body-editor"
