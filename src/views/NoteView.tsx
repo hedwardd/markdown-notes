@@ -19,6 +19,8 @@ export default function NoteView({ state, dispatch }: Props): JSX.Element {
   };
 
   const { currentNoteIndex, editorBodyText, editorTitleText, notes } = state;
+  const { title, body } = notes[currentNoteIndex!];
+  const hasMadeEdit = title !== editorTitleText || body !== editorBodyText;
 
   return (
     <div className="note-container">
@@ -52,16 +54,19 @@ export default function NoteView({ state, dispatch }: Props): JSX.Element {
         {isEditing ? (
           <button
             type="submit"
+            className={`btn btn-primary ${
+              !hasMadeEdit && "btn-primary--disabled"
+            }`}
             onClick={() => dispatch({ type: "SAVE_EDIT" })}
-            className="btn btn-primary"
+            disabled={!hasMadeEdit}
           >
             Save
           </button>
         ) : (
           <button
             type="button"
-            onClick={() => dispatch({ type: "START_EDIT" })}
             className="btn btn-primary btn-edit"
+            onClick={() => dispatch({ type: "START_EDIT" })}
           >
             Edit
           </button>
@@ -77,7 +82,7 @@ export default function NoteView({ state, dispatch }: Props): JSX.Element {
             placeholder="Note Title"
           />
         ) : (
-          <h3 className="note-title__text">{notes[currentNoteIndex!].title}</h3>
+          <h3 className="note-title__text">{title}</h3>
         )}
       </div>
 
@@ -93,7 +98,7 @@ export default function NoteView({ state, dispatch }: Props): JSX.Element {
           <div
             className="note-body-display"
             dangerouslySetInnerHTML={{
-              __html: marked(notes[currentNoteIndex!].body),
+              __html: marked(body),
             }}
           />
         )}

@@ -68,7 +68,7 @@
 }
 
 .btn {
-  min-width: var(--layout-6);
+  min-width: var(--layout-7);
   background: none;
   border: none;
   font-size: var(--font-size-2);
@@ -86,13 +86,16 @@
   box-shadow: 0 1px 1px rgb(18 21 26 / 8%);
   color: #fff;
   font-weight: 500;
-  font-family: Inter;
 }
 
+.btn-primary--disabled {
+  background-color: darkgrey;
+} 
+
 .btn-edit {
-  background: rgba(249, 250, 251, 0.1);;
+  background: rgba(249, 250, 251, 0.1);
   color: #d18809;
-  border: 1px solid var(--glass-background);
+  border: 1px solid #d18809;
 }
 
 .btn-delete {
