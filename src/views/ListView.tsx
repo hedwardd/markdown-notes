@@ -33,6 +33,7 @@ export default function ListView({ state, dispatch }: Props): JSX.Element {
               <li
                 className="note-list-item"
                 onClick={() => dispatch({ type: "OPEN_NOTE", payload: i })}
+                key={`key-${note.creation_date}`}
               >
                 <h3 className="list-note-title">{note.title}</h3>
 
