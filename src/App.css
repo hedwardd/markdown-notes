@@ -54,6 +54,7 @@
 .header {
   display: flex;
   justify-content: center;
+  margin-bottom: var(--layout-4);
 }
 
 .header h1 {
@@ -66,18 +67,49 @@
   border: var(--glass-border);
 }
 
-.button {
-  padding: var(--layout-2) var(--layout-3);
+.btn {
+  /* padding: var(--layout-2) var(--layout-3);
   background: var(--glass-background);
   box-shadow: var(--glass-box-shadow);
   backdrop-filter: var(--glass-backdrop-filter);
   -webkit-backdrop-filter: var(--glass-backdrop-filter);
   border: var(--glass-border);
-  border-radius: var(--layout-4);
+  border-radius: var(--layout-4); */
+  min-width: var(--layout-6);
+  background: none;
+  border: none;
   font-size: var(--font-size-2);
+  font-weight: 500;
   cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  /* text-transform: uppercase; */
+  /* letter-spacing: 2px; */
+}
+
+.btn-primary {
+  min-width: var(--layout-8);
+  padding: var(--layout-2) var(--layout-4);
+  border: 1px solid transparent;
+  background-color: #2ea44f;
+  background-image: linear-gradient(180deg,hsla(0,0%,100%,0.15),hsla(0,0%,100%,0));
+  border-radius: 6px;
+  box-shadow: 0 1px 1px rgb(18 21 26 / 8%);
+  color: #fff;
+  /* font-size: var(--font-size-2); */
+  font-weight: 500;
+  font-family: Inter;
+}
+
+.btn-edit {
+  background: rgba(249, 250, 251, 0.1);;
+  color: #d18809;
+  /* font-weight: 600; */
+  /* letter-spacing: .5px; */
+  border: 1px solid var(--glass-background);
+}
+
+.btn-delete {
+  color: red;
+  
 }
 
 /*
@@ -139,54 +171,73 @@
   margin: auto;
   max-width: var(--layout-13);
   margin-top: var(--layout-5);
-  padding: var(--layout-2);
+  padding: var(--layout-4) var(--layout-4);
   display: flex;
   flex-direction: column;
   align-items: stretch;
   gap: var(--layout-4);
+  border-radius: var(--layout-4);
+  background: var(--glass-background);
+  box-shadow: var(--glass-box-shadow);
+  backdrop-filter: var(--glass-backdrop-filter);
+  -webkit-backdrop-filter: var(--glass-backdrop-filter);
+  border: var(--glass-border);
 }
 
 .top-buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: baseline;
+  /* border-bottom: 1px solid rgba(209,213,219,.3); */
+  padding-bottom: var(--layout-2);
+}
+
+.left-buttons {
+  display: flex;
+  gap: var(--layout-5)
 }
 
 .note-title {
   min-width: var(--layout-11);
-  align-self: center;
+  align-self: flex-start;
   display: flex;
-  justify-content: center;
-  border-radius: var(--layout-4);
+  justify-content: flex-start;
+  /* border-top: 1px solid rgba(209,213,219,.3); */
+  /* border-bottom: 1px solid rgba(209,213,219,.3); */
+  /* border-radius: var(--layout-4);
   background: var(--glass-background);
   box-shadow: var(--glass-box-shadow);
   backdrop-filter: var(--glass-backdrop-filter);
   -webkit-backdrop-filter: var(--glass-backdrop-filter);
-  border: var(--glass-border);
+  border: var(--glass-border); */
 }
 
 .note-title__text {
-  margin: var(--layout-3) var(--layout-4);
+  margin: var(--layout-3) 0;
   font-size: var(--font-size-3);
 }
 
 .note-title__input {
-  padding: var(--layout-3) var(--layout-1);
+  /* padding: var(--layout-3) var(--layout-1); */
+  /* display: flex; */
+  padding: var(--layout-2) var(--layout-4);
   font-size: var(--font-size-3);
-  background: transparent;
+  background: white;
   border: none;
-  text-align: center;
+  border-radius: var(--layout-2);
+  /* text-align: center; */
 }
 
 .note-body {
   text-align: left;
-  border-radius: var(--layout-4);
+  /* padding: var(--layout-3) var(--layout-3); */
+  /* border-radius: var(--layout-4);
   background: var(--glass-background);
   box-shadow: var(--glass-box-shadow);
   backdrop-filter: var(--glass-backdrop-filter);
   -webkit-backdrop-filter: var(--glass-backdrop-filter);
-  border: var(--glass-border);
-  padding: var(--layout-3) var(--layout-3);
+  border: var(--glass-border); */
 }
 
 .note-body-display {
@@ -195,7 +246,9 @@
 
 .note-body-editor {
   min-height: var(--layout-10);
-  width: 100%;
+  padding: var(--layout-2) var(--layout-4);
+  width: calc(100% - 2 * var(--layout-4));
+  border-radius: var(--layout-2);
   background: transparent;
   border: none;
   resize: none;

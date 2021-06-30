@@ -30,9 +30,9 @@ function App(): JSX.Element {
 
   return (
     <div className="App">
-      <header className="header">
+      {/* <header className="header">
         <h1>Markdown Notes</h1>
-      </header>
+      </header> */}
 
       {currentNoteIndex === null ? (
         <ListView state={state} dispatch={dispatch} />

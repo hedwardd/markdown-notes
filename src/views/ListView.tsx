@@ -15,12 +15,16 @@ export default function ListView({ state, dispatch }: Props): JSX.Element {
 
   return (
     <div className="list-view">
+      {/* <header className="header">
+        <h1>Markdown Notes</h1>
+      </header> */}
+
       <button
         type="button"
-        className="button new-note-btn"
+        className="btn btn-primary"
         onClick={() => dispatch({ type: "CREATE_NOTE" })}
       >
-        New
+        New Note
       </button>
       <div className="list-wrapper">
         {notes.length ? (

@@ -25,17 +25,26 @@ export default function NoteView({ state, dispatch }: Props): JSX.Element {
       <div className="top-buttons">
         {isEditing ? (
           <>
-            <button
-              type="button"
-              onClick={() => dispatch({ type: "CANCEL_EDIT" })}
-              className="button back-button"
-            >
-              Cancel
-            </button>
+            <div className="left-buttons">
+              <button
+                type="button"
+                onClick={() => dispatch({ type: "CANCEL_EDIT" })}
+                className="btn back-button"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="btn btn-delete"
+                onClick={() => dispatch({ type: "DELETE_NOTE" })}
+              >
+                Delete
+              </button>
+            </div>
             <button
               type="submit"
               onClick={() => dispatch({ type: "SAVE_EDIT" })}
-              className="button save-button"
+              className="btn btn-primary"
             >
               Save
             </button>
@@ -45,14 +54,14 @@ export default function NoteView({ state, dispatch }: Props): JSX.Element {
             <button
               type="button"
               onClick={() => dispatch({ type: "CLOSE_NOTE" })}
-              className="button back-button"
+              className="btn back-button"
             >
               Back
             </button>
             <button
               type="button"
               onClick={() => dispatch({ type: "START_EDIT" })}
-              className="button edit-button"
+              className="btn btn-primary btn-edit"
             >
               Edit
             </button>
@@ -60,12 +69,13 @@ export default function NoteView({ state, dispatch }: Props): JSX.Element {
         )}
       </div>
 
-      <div className={isEditing ? "note-title white-background" : "note-title"}>
+      <div className="note-title">
         {isEditing ? (
           <input
             className="note-title__input"
             value={editorTitleText}
             onChange={editHandler("title")}
+            placeholder="Note Title"
           />
         ) : (
           <h3 className="note-title__text">{notes[currentNoteIndex!].title}</h3>
@@ -78,6 +88,7 @@ export default function NoteView({ state, dispatch }: Props): JSX.Element {
             className="note-body-editor"
             value={editorBodyText}
             onChange={editHandler("body")}
+            placeholder="Try adding <b>markdown</b> <i>here</i>"
           />
         ) : (
           <div
@@ -88,14 +99,6 @@ export default function NoteView({ state, dispatch }: Props): JSX.Element {
           />
         )}
       </div>
-
-      <button
-        type="button"
-        className="button delete-button"
-        onClick={() => dispatch({ type: "DELETE_NOTE" })}
-      >
-        Delete
-      </button>
     </div>
   );
 }
