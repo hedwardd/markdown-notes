@@ -68,21 +68,12 @@
 }
 
 .btn {
-  /* padding: var(--layout-2) var(--layout-3);
-  background: var(--glass-background);
-  box-shadow: var(--glass-box-shadow);
-  backdrop-filter: var(--glass-backdrop-filter);
-  -webkit-backdrop-filter: var(--glass-backdrop-filter);
-  border: var(--glass-border);
-  border-radius: var(--layout-4); */
   min-width: var(--layout-6);
   background: none;
   border: none;
   font-size: var(--font-size-2);
   font-weight: 500;
   cursor: pointer;
-  /* text-transform: uppercase; */
-  /* letter-spacing: 2px; */
 }
 
 .btn-primary {
@@ -94,7 +85,6 @@
   border-radius: 6px;
   box-shadow: 0 1px 1px rgb(18 21 26 / 8%);
   color: #fff;
-  /* font-size: var(--font-size-2); */
   font-weight: 500;
   font-family: Inter;
 }
@@ -102,8 +92,6 @@
 .btn-edit {
   background: rgba(249, 250, 251, 0.1);;
   color: #d18809;
-  /* font-weight: 600; */
-  /* letter-spacing: .5px; */
   border: 1px solid var(--glass-background);
 }
 
@@ -116,6 +104,7 @@
   List View
  */
 .list-view {
+  margin-top: var(--layout-4);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -189,7 +178,6 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: baseline;
-  /* border-bottom: 1px solid rgba(209,213,219,.3); */
   padding-bottom: var(--layout-2);
 }
 
@@ -203,14 +191,6 @@
   align-self: flex-start;
   display: flex;
   justify-content: flex-start;
-  /* border-top: 1px solid rgba(209,213,219,.3); */
-  /* border-bottom: 1px solid rgba(209,213,219,.3); */
-  /* border-radius: var(--layout-4);
-  background: var(--glass-background);
-  box-shadow: var(--glass-box-shadow);
-  backdrop-filter: var(--glass-backdrop-filter);
-  -webkit-backdrop-filter: var(--glass-backdrop-filter);
-  border: var(--glass-border); */
 }
 
 .note-title__text {
@@ -219,29 +199,15 @@
 }
 
 .note-title__input {
-  /* padding: var(--layout-3) var(--layout-1); */
-  /* display: flex; */
   padding: var(--layout-2) var(--layout-4);
   font-size: var(--font-size-3);
   background: white;
   border: none;
   border-radius: var(--layout-2);
-  /* text-align: center; */
 }
 
 .note-body {
   text-align: left;
-  /* padding: var(--layout-3) var(--layout-3); */
-  /* border-radius: var(--layout-4);
-  background: var(--glass-background);
-  box-shadow: var(--glass-box-shadow);
-  backdrop-filter: var(--glass-backdrop-filter);
-  -webkit-backdrop-filter: var(--glass-backdrop-filter);
-  border: var(--glass-border); */
-}
-
-.note-body-display {
-
 }
 
 .note-body-editor {
