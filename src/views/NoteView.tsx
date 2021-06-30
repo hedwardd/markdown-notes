@@ -23,34 +23,16 @@ export default function NoteView({ state, dispatch }: Props): JSX.Element {
   return (
     <div className="note-container">
       <div className="top-buttons">
-        {isEditing ? (
-          <>
-            <div className="left-buttons">
-              <button
-                type="button"
-                onClick={() => dispatch({ type: "CANCEL_EDIT" })}
-                className="btn back-button"
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                className="btn btn-delete"
-                onClick={() => dispatch({ type: "DELETE_NOTE" })}
-              >
-                Delete
-              </button>
-            </div>
+        <div className="left-buttons">
+          {isEditing ? (
             <button
-              type="submit"
-              onClick={() => dispatch({ type: "SAVE_EDIT" })}
-              className="btn btn-primary"
+              type="button"
+              onClick={() => dispatch({ type: "CANCEL_EDIT" })}
+              className="btn back-button"
             >
-              Save
+              Cancel
             </button>
-          </>
-        ) : (
-          <>
+          ) : (
             <button
               type="button"
               onClick={() => dispatch({ type: "CLOSE_NOTE" })}
@@ -58,14 +40,31 @@ export default function NoteView({ state, dispatch }: Props): JSX.Element {
             >
               Back
             </button>
-            <button
-              type="button"
-              onClick={() => dispatch({ type: "START_EDIT" })}
-              className="btn btn-primary btn-edit"
-            >
-              Edit
-            </button>
-          </>
+          )}
+          <button
+            type="button"
+            className="btn btn-delete"
+            onClick={() => dispatch({ type: "DELETE_NOTE" })}
+          >
+            Delete
+          </button>
+        </div>
+        {isEditing ? (
+          <button
+            type="submit"
+            onClick={() => dispatch({ type: "SAVE_EDIT" })}
+            className="btn btn-primary"
+          >
+            Save
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => dispatch({ type: "START_EDIT" })}
+            className="btn btn-primary btn-edit"
+          >
+            Edit
+          </button>
         )}
       </div>
 
