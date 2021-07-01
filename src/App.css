@@ -71,7 +71,7 @@
   min-width: var(--layout-7);
   background: none;
   border: none;
-  font-size: var(--font-size-2);
+  font-size: var(--font-size-3);
   font-weight: 500;
   cursor: pointer;
 }
@@ -89,13 +89,13 @@
 }
 
 .btn-primary--disabled {
-  background-color: darkgrey;
+  background-color: #8CDFA3;
 } 
 
 .btn-edit {
   background: rgba(249, 250, 251, 0.1);
-  color: #d18809;
-  border: 1px solid #d18809;
+  color: #A06807;
+  border: 1px solid #A06807;
 }
 
 .btn-delete {
@@ -198,7 +198,7 @@
 
 .note-title__text {
   margin: var(--layout-3) 0;
-  font-size: var(--font-size-3);
+  font-size: var(--font-size-6);
 }
 
 .note-title__input {
