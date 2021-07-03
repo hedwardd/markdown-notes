@@ -32,6 +32,16 @@ const reducer = (state: AppState, action: Action): AppState => {
         editorBodyText: newNote.body,
       };
     }
+    case "CLICK_DELETE":
+      return {
+        ...state,
+        showDeleteModal: true,
+      };
+    case "CANCEL_DELETE":
+      return {
+        ...state,
+        showDeleteModal: false,
+      };
     case "DELETE_NOTE":
       return {
         ...state,
@@ -41,6 +51,7 @@ const reducer = (state: AppState, action: Action): AppState => {
           ...notes.slice(currentNoteIndex! + 1),
         ],
         currentNoteIndex: null,
+        showDeleteModal: false,
       };
     case "START_EDIT":
       return {

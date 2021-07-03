@@ -100,7 +100,6 @@
 
 .btn-delete {
   color: red;
-  
 }
 
 /*
@@ -223,8 +222,35 @@
   resize: none;
 }
 
+.delete-modal {
+  position: absolute;
+  top: calc(50% - var(--layout-9) / 2);
+  left: calc(50% - var(--layout-13) / 2);
+  width: var(--layout-13);
+  height: var(--layout-9);
+  padding: var(--layout-3) var(--layout-4);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-radius: var(--layout-4);
+  background: var(--glass-background);
+  box-shadow: var(--glass-box-shadow);
+  backdrop-filter: var(--glass-backdrop-filter);
+  -webkit-backdrop-filter: var(--glass-backdrop-filter);
+  border: var(--glass-border);
+}
+
+.space-evenly {
+  display: flex;
+  justify-content: space-evenly;;
+}
+
 .white-background {
   background-color: #FFFFFF;
+}
+
+.hide {
+  display: none;
 }
 
 @media (min-width: 768px) {

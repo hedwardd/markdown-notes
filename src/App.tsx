@@ -17,6 +17,7 @@ const initialState: AppState = {
   isEditing: false,
   editorTitleText: "",
   editorBodyText: "",
+  showDeleteModal: false,
 };
 
 function App(): JSX.Element {

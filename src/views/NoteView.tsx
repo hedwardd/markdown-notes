@@ -9,7 +9,14 @@ type Props = {
 };
 
 export default function NoteView({ state, dispatch }: Props): JSX.Element {
-  const { isEditing } = state;
+  const {
+    currentNoteIndex,
+    editorBodyText,
+    editorTitleText,
+    isEditing,
+    notes,
+    showDeleteModal,
+  } = state;
 
   const editHandler = (type: "title" | "body") => {
     const actionType = type === "title" ? "EDIT_TITLE" : "EDIT_BODY";
@@ -17,8 +24,6 @@ export default function NoteView({ state, dispatch }: Props): JSX.Element {
       dispatch({ type: actionType, payload: e.target.value });
     };
   };
-
-  const { currentNoteIndex, editorBodyText, editorTitleText, notes } = state;
   const { title, body } = notes[currentNoteIndex!];
   const hasMadeEdit = title !== editorTitleText || body !== editorBodyText;
 
@@ -46,7 +51,7 @@ export default function NoteView({ state, dispatch }: Props): JSX.Element {
           <button
             type="button"
             className="btn btn-delete"
-            onClick={() => dispatch({ type: "DELETE_NOTE" })}
+            onClick={() => dispatch({ type: "CLICK_DELETE" })}
           >
             Delete
           </button>
@@ -102,6 +107,25 @@ export default function NoteView({ state, dispatch }: Props): JSX.Element {
             }}
           />
         )}
+      </div>
+      <div className={`delete-modal ${!showDeleteModal && "hide"}`}>
+        <div>Are you sure you want to delete?</div>
+        <div className="space-evenly">
+          <button
+            type="button"
+            className="btn"
+            onClick={() => dispatch({ type: "CANCEL_DELETE" })}
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            className="btn btn-delete"
+            onClick={() => dispatch({ type: "DELETE_NOTE" })}
+          >
+            Confirm
+          </button>
+        </div>
       </div>
     </div>
   );

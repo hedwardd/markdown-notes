@@ -10,12 +10,15 @@ export type AppState = {
   isEditing: boolean;
   editorTitleText: string;
   editorBodyText: string;
+  showDeleteModal: boolean;
 };
 
 export type Action =
   | { type: "OPEN_NOTE"; payload: number }
   | { type: "CLOSE_NOTE" }
   | { type: "CREATE_NOTE" }
+  | { type: "CLICK_DELETE" }
+  | { type: "CANCEL_DELETE" }
   | { type: "DELETE_NOTE" }
   | { type: "START_EDIT" }
   | { type: "EDIT_TITLE"; payload: string }
