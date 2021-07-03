@@ -2,22 +2,11 @@ import DOMPurify from "dompurify";
 
 import { Action, Note, AppState } from "./types";
 
-// const generateNoteId = (notes: Note[]) => notes[notes.length - 1].id + 1;
-
 const createNewNote = (): Note => ({
-  // id: id,
   title: "Untitled Note",
   body: "",
   creation_date: new Date(),
 });
-
-// const noteIndexFromId = (id: number, notes: Note[]) => {
-//   for (let i = 0; i < notes.length; i++) {
-//     if (notes[i].id === id)
-//       return i;
-//   }
-//   return null;
-// }
 
 const reducer = (state: AppState, action: Action): AppState => {
   const { notes, currentNoteIndex, editorTitleText, editorBodyText } = state;
