@@ -4,6 +4,7 @@ import React from "react";
 import marked from "marked";
 
 import { Action, AppState } from "../types";
+import ListEmptyState from "../components/ListEmptyState";
 
 type Props = {
   state: AppState;
@@ -46,7 +47,7 @@ export default function ListView({ state, dispatch }: Props): JSX.Element {
           </ul>
         ) : (
           // Empty State
-          <p>Add your first note!</p>
+          <ListEmptyState />
         )}
       </div>
     </div>
