@@ -109,7 +109,7 @@ export default function NoteView({ state, dispatch }: Props): JSX.Element {
         )}
       </div>
       <div className={`delete-modal ${!showDeleteModal && "hide"}`}>
-        <div>Are you sure you want to delete?</div>
+        <div>Delete this note?</div>
         <div className="space-evenly">
           <button
             type="button"
