@@ -81,6 +81,7 @@
   font-size: var(--font-size-3);
   font-weight: 500;
   cursor: pointer;
+  color: #282828;
 }
 
 .btn-primary {
@@ -104,9 +105,9 @@
 }
 
 .btn-edit {
-  background: rgba(249, 250, 251, 0.1);
+  background: transparent;
   color: #a06807;
-  border: 1px solid #a06807;
+  box-shadow: none;
 }
 
 .btn-delete {
@@ -178,6 +179,7 @@
   animation-duration: 1s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
+  cursor: default;
 }
 
 @keyframes bounce {
@@ -270,8 +272,8 @@
 .delete-modal {
   position: absolute;
   top: calc(50% - var(--layout-9) / 2);
-  left: calc(50% - var(--layout-13) / 2);
-  width: var(--layout-13);
+  left: calc(50% - var(--layout-12) / 2);
+  width: var(--layout-12);
   height: var(--layout-9);
   padding: var(--layout-3) var(--layout-4);
   display: flex;
